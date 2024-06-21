@@ -1,5 +1,5 @@
 """
-ASGI config for _profile_viewer project.
+ASGI config for user_imp project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', '_profile_viewer.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'user_imp.settings')
 
 application = get_asgi_application()
