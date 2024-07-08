@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="text-center">See all the available Musician name and their album</h1>
+    <table>
+        <thead>
+            <tr>
+                <th class="m-4">ID</th>
+                <th class="m-4">Musician Name</th>
+                <th class="m-4">Email</th>
+                <th class="m-4">Phone</th>
+                <th class="m-4">Instrument Type</th>
+                <th class="m-4">Rating</th>
+                <th class="m-4">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+           {% for person in data %}
+            <tr>
+                <td class="m-4">{{ person.id }}</td>
+                <td class="m-4">{{ person.first_name }} {{ person.last_name }}</td>
+                <td class="m-4">{{ person.email }}</td>
+                <td class="m-4">{{person.phone}} </td>
+                <td class="m-4">{{ person.instrument_type }}</td>
+                <td class="m-4">{{person.album.all.first.rating}}</td>
+                <td class="m-4">
+                    <div>
+                        <a href="{% url 'update' person.id%}"><button type="button" class="btn btn-primary">Edit</button></a>
+                        <a href="{% url 'delete' person.id %}"><button type="button" class="btn btn-danger">Delete</button></a>
+                        
+                    </div>
+                </td>                
+            </tr>
+           {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}
