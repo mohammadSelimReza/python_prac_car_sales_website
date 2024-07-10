@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+{% block main %}
+    <section class="banner d-flex">
+        <div class="banner-img w-50">
+            <img src="{% static 'images/banner_img.jpg' %}" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="welcome w-50">
+            <h1 class="title">Welcome to <span class="title_name">CarCraft</span></h1>
+            <p class="title-moto">Your Ultimate Destination for Quality Cars</p>
+            <p class="title-info">At CarCraft, we are committed to providing you with a seamless and enjoyable car-buying experience. Our wide selection of new and pre-owned vehicles ensures that you will find the perfect car to suit your needs, preferences, and budget. Whether you're looking for a compact car, a family-friendly SUV, a reliable sedan, or a powerful truck, CarCraft has you covered.</p>
+        </div>
+    </section>
+    <section>
+        {% block items %} {% endblock items %}
+    </section>
+{% endblock main %}

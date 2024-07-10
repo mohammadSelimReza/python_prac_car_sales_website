@@ -1,16 +1,17 @@
 {% extends "base.html" %}
-{% load crispy_forms_tags %}
-{% block content %}
-  <h1 class="text-center">Register Here</h1>
-  <form method="post" class="w-25 mx-auto" novalidate>
-    {% csrf_token %}
-    <!-- {{form | crispy}} -->
-     {% for fm in form %}
-       {{fm.label_tag}}
-       {{fm}}
-       {{fm.errors|striptags}}
-       <br>
-     {% endfor %}
-    
-  </form>
-{% endblock content %}
+
+{% block main %}
+    {% load crispy_forms_tags %}
+    <form method="post" class="mx-auto w-50" novalidate>
+        <!-- {{form | crispy }} -->
+         <h1>{{type}} </h1>
+         {% csrf_token %}
+         {% for fm in form %}
+           {{fm.label_tag}}
+           {{fm}}
+           {{fm.errors|striptags }}
+           <br>
+         {% endfor %}
+        <button type="submit" class="btn btn-info mt-4">{{btn_type}} </button>
+    </form>
+{% endblock main %}

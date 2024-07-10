@@ -1,0 +1,21 @@
+{% extends "index.html" %}
+
+{% block items %}
+    <h1 class="title text-center">Our Products</h1>
+    <div class="box" style="display: flex; flex-wrap: wrap;">
+        {% for car in data %}
+        <div>
+            <div>
+                <img src="{{car.image.url}}" class="cardImg" alt="">
+            </div>
+            <div>
+                <h4 class="car-title">{{car.title}} </h4>
+                <h6>{{car.brand}} </h6>
+                <p>Price: ${{car.price}} </p>
+                <p class="car-des">{{car.descriptiop}} </p>
+                <p>{{car.quantity}} </p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock items %}
