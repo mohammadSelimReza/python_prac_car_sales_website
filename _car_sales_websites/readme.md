@@ -6,7 +6,7 @@ To-do:
 2. In the home page, at first show some text and a single picture on the home page. --> Done
 3. Implement a user registration and login system. --> Done
 4. User can also edit their profile details --> Done
-
+5. interface added nicely.
 
 
 Undone:
