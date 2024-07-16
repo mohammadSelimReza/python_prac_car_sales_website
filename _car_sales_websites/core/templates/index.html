@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+
+    <section class="banner d-flex">
+        <div class="banner-img w-50">
+            <img src="{% static 'images/banner_img.jpg' %}" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="welcome w-50">
+            <h1 class="title">Welcome to <span class="title_name">CarCraft</span></h1>
+            <p class="title-moto">Your Ultimate Destination for Quality Cars</p>
+            <p class="title-info">At CarCraft, we are committed to providing you with a seamless and enjoyable car-buying experience. Our wide selection of new and pre-owned vehicles ensures that you will find the perfect car to suit your needs, preferences, and budget. Whether you're looking for a compact car, a family-friendly SUV, a reliable sedan, or a powerful truck, CarCraft has you covered.</p>
+        </div>
+    </section>
+
+
+    <section class="product-container">
+        <h3 class="text-center">Our Products</h3>
+        <div class="d-flex justify-content-center">
+            <div class="form-check mx-4">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="all" {% if not brand_slug %}checked{% endif %} data-url="{% url 'homePage' %}">
+                <label class="form-check-label brand_link {% if not brand_slug %}active-filter{% endif %}" for="all">All</label>
+            </div>
+            {% for brand in brands %}
+            <div class="form-check mx-4">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="{{brand.id}}" {% if brand.slug == brand_slug %}checked{% endif %} data-url="{% url 'brand_filter' brand.slug %}">
+                <label class="form-check-label brand_link {% if brand.slug == brand_slug %}active-filter{% endif %}" for="{{brand.id}}">{{brand.name}}</label>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="product d-flex flex-row flex-wrap justify-content-center">
+            {% for product in products  %}
+            <div class="m-4 card-box">
+                <img src="{{product.image.url}}" class="card-img" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{product.title}} </h5>
+                    <p class="card-brand">{{product.brand_name.name}} </p>
+                    <p class="card-des">{{product.description}} </p>
+                    <p class="card-price">Product left: {{product.quantity}} </p>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <p class="card-price">Price:</p>
+                            <p class="card-price">${{product.price}} </p>
+                        </div>
+                        {% if user.is_authenticated %}
+                        <a href="#" class="btn btn-primary">Buy Now</a>  
+                        {% endif %}
+                        
+                    </div>
+                </div>
+                {% if not user.is_authenticated %}
+                    <a href="{% url 'userLogin' %}"><button type="button" class="info_btn btn btn-dark">Login To Buy</button></a>
+                    {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const radios = document.querySelectorAll('input[type="radio"][name="flexRadioDefault"]');
+            radios.forEach(radio => {
+                radio.addEventListener("change", function() {
+                    window.location.href = this.getAttribute("data-url");
+                });
+            });
+    
+            // Add active class to the checked radio button's label
+            radios.forEach(radio => {
+                radio.addEventListener("change", function() {
+                    document.querySelectorAll('.form-check-label').forEach(label => {
+                        label.classList.remove('active-filter');
+                    });
+                    this.nextElementSibling.classList.add('active-filter');
+                });
+            });
+        });
+    </script>
+
+{% endblock content %}

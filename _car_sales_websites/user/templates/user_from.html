@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% load crispy_forms_tags %}
+    <form method="post" class="mx-auto w-50" novalidate>
+        <!-- {{form | crispy }} -->
+         <h1>{{type}} </h1>
+         {% csrf_token %}
+         {% for fm in form %}
+           {{fm.label_tag}}
+           {{fm}}
+           {{fm.errors|striptags }}
+           <br>
+         {% endfor %}
+         {% if type == 'Update Your Profile' %}
+          <a href="{% url 'updatePass' %}"><button type="button" class="btn btn-warning">Change Your Password</button></a>
+          <br>
+         {% endif %}
+        <button type="submit" class="btn btn-info mt-4">{{btn_type}} </button>
+    </form>
+{% endblock content %}
