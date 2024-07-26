@@ -34,9 +34,9 @@
             <div class="m-4 card-box">
                 <img src="{{product.image.url}}" class="card-img" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">{{product.title}} </h5>
+                    <h5 class="card-title"><a href="{% url 'carDetails' product.id %}">{{product.title}}</a></h5>
                     <p class="card-brand">{{product.brand_name.name}} </p>
-                    <p class="card-des">{{product.description}} </p>
+                    <p class="card-des">{{product.description| truncatewords:10}} </p>
                     <p class="card-price">Product left: {{product.quantity}} </p>
                     <div class="d-flex justify-content-between">
                         <div>

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+  
+<div class="d-flex car-show-form">
+    <div class="d-flex flex-column car-details">
+        <div class=" w-1/2">
+            <img src="{{car.image.url}}" class="card-img" alt="...">
+        </div>
+        <div class="w-1/2 car-body">
+            <h5 class="car-name">{{car.title}}</h5>
+            <p class="car-brand">{{car.brand_name.name}} </p>
+            <p class="car-des">{{car.description}} </p>
+            <p class="card-price">Product left: {{car.quantity}} </p>
+            <div class="d-flex justify-content-between">
+                <div>
+                    <p class="card-price">Price:</p>
+                    <p class="card-price">${{car.price}} </p>
+                </div>
+                {% if user.is_authenticated %}
+                <a href="#" class="btn btn-primary">Buy Now</a>  
+                {% endif %}
+                
+            </div>
+        </div>
+    </div>
+    <div class="card comment-show">
+        <div class="card-body">
+            <h1 class="text-center">Posted Comment</h1>
+            {% if not comments %}
+            <h5 class="text-center">No comment posted yet.</h5>  
+            <h5 class="text-center">You are the first one to comment here.</h5>
+            {% else %}
+            {% for comment in comments %}
+            <blockquote class="blockquote mb-0">
+                <p>{{comment.body}} </p>
+                <footer class="blockquote-footer"><cite title="Source Title">{{comment.name}} </cite></footer>
+              </blockquote>    
+              <hr>      
+            {% endfor %}              
+            {% endif %}
+            
+
+        </div>
+    </div>
+</div>
+
+<div class="card comment-card w-1/2">
+    <form class="card-body w-50 m-auto mt-4" method="post" novalidate>
+        <h1>Add Comment</h1>
+        {% csrf_token %}
+        {{comment_form | crispy}}
+        <a href="{% url 'carDetails' %}"><button type="submit" class="btn btn-primary">Add comment</button></a>
+        
+    </form>
+</div>
+{% endblock content %}

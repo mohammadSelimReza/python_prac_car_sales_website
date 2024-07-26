@@ -75,3 +75,4 @@ def password_change(request):
     return render(request,'user_from.html',{'form':pass_change,'type':'Update Password Here','btn_type':'Change Password'})
 
         
+        
