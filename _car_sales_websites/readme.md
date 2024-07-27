@@ -1,3 +1,9 @@
+administration login:
+username: admin
+email: admin@admin.com
+password: 123
+
+
 1.There must be a navbar where an authenticated user can see home, profile, logout menu and an unauthenticated user will see home, signup, login. -> Done.
 2. In the home page, at first show some text and a single picture on the home page. Then the user can see the car list with image, price, and can filter cars by brand name.  -> Done.
 3. There will be two models: Car Model and Brand Model. Make a relationship between them so that A brand has multiple cars but a car must have only one brand. You can add additional apps/models if you need. -> Done

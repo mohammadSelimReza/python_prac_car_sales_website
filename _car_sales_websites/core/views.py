@@ -52,4 +52,5 @@ class BuyCar(View):
             car.save()
             messages.success(request, "Car Purchased Done")
             Purchase.objects.create(user=request.user,car=car)
+        
         return redirect('homePage')
