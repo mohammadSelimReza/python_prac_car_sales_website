@@ -42,7 +42,7 @@
             </ul>
             <div class="d-flex">
               {% if request.user.is_authenticated %}
-              <a href="{% url 'profileUpdate' %}"><button type="button" class="btn btn-outline-light mx-4">Profile</button></a>
+              <a href="{% url 'usrProfile' %}"><button type="button" class="btn btn-outline-light mx-4">Profile</button></a>
               <a href="{% url 'userOut' %}"><button type="button" class="btn btn-primary">Logout</button></a>
               {% else %}
               <a href="{% url 'userLogin' %}"><button type="button" class="btn btn-outline-light mx-4">Login</button></a>

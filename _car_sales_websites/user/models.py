@@ -4,7 +4,6 @@ from product.models import Car
 class userComment(models.Model):
     car = models.ForeignKey(Car,related_name='comments',on_delete=models.CASCADE)
     name = models.CharField(max_length=30)
-    email = models.EmailField(unique=True)
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     

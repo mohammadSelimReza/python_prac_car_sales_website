@@ -1,9 +1,12 @@
 from typing import Any
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404,redirect
 from product.models import Brand,Car
 from django.views.generic import DetailView
 from product import models
 from user.forms import user_comment
+from django.views import View
+from product.models import Purchase
+from django.contrib import messages
 # Create your views here.
 def homePage(request,brand_slug = None):
     if brand_slug:
@@ -39,3 +42,14 @@ class CarDetails(DetailView):
         context['comments'] = comments
         context['comment_form'] = comment_form
         return context
+    
+    
+class BuyCar(View):
+    def post(self,request,car_id):
+        car = Car.objects.get(id=car_id)
+        if car.quantity > 0:
+            car.quantity -= 1
+            car.save()
+            messages.success(request, "Car Purchased Done")
+            Purchase.objects.create(user=request.user,car=car)
+        return redirect('homePage')

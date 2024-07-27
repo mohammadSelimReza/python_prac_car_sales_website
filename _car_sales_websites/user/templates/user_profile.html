@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>User Profile Of</h1>
+    <h1>{{user.first_name}} {{user.last_name}} </h1>
+    <a href="{% url 'userOrder' %}" class="d-block mb-4"><button class="btn btn-primary">Purchase History</button> </a>
+    <a href="{% url 'profileUpdate' %}"><button class="btn btn-warning">Update your profile</button> </a>
+{% endblock content %}

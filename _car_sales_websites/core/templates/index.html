@@ -44,7 +44,10 @@
                             <p class="card-price">${{product.price}} </p>
                         </div>
                         {% if user.is_authenticated %}
-                        <a href="#" class="btn btn-primary">Buy Now</a>  
+                        <form action="{% url 'buyCar' product.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary">Buy Now</button>
+                        </form>
                         {% endif %}
                         
                     </div>

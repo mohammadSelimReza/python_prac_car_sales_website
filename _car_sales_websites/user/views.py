@@ -5,7 +5,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,login,logout,update_session_auth_hash
-
+from product.models import Purchase
 # Create your views here.
 def createUser(request):
     if request.user.is_authenticated:
@@ -46,6 +46,10 @@ def user_logout(request):
     return redirect('homePage')
 
 @login_required
+def user_profile(request):
+    return render(request,'user_profile.html')
+
+@login_required
 def user_update(request):
     if request.method == 'POST':
         update_form = forms.profile_update(request.POST,instance = request.user)
@@ -75,4 +79,7 @@ def password_change(request):
     return render(request,'user_from.html',{'form':pass_change,'type':'Update Password Here','btn_type':'Change Password'})
 
         
-        
+@login_required
+def user_purhcased(request):
+    purchases = Purchase.objects.filter(user=request.user)
+    return render(request,'user_purchased.html',{'purchases':purchases})  

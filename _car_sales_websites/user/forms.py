@@ -20,4 +20,4 @@ class profile_update(UserChangeForm):
 class user_comment(forms.ModelForm):
     class Meta:
         model = userComment
-        fields = ['name','email','body']
+        fields = ['name','body']

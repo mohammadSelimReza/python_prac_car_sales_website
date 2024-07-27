@@ -19,7 +19,10 @@
                     <p class="card-price">${{car.price}} </p>
                 </div>
                 {% if user.is_authenticated %}
-                <a href="#" class="btn btn-primary">Buy Now</a>  
+                <form action="{% url 'buyCar' car.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">Buy Now</button>
+                </form>
                 {% endif %}
                 
             </div>
@@ -51,7 +54,7 @@
         <h1>Add Comment</h1>
         {% csrf_token %}
         {{comment_form | crispy}}
-        <a href="{% url 'carDetails' %}"><button type="submit" class="btn btn-primary">Add comment</button></a>
+        <button type="submit" class="btn btn-primary">Add comment</button>
         
     </form>
 </div>

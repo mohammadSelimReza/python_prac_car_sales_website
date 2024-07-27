@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ user.username }}'s Profile</h1>
+<h2>Bought Cars</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Car</th>
+            <th>Date Purchased</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for purchase in purchases %}
+        <tr>
+            <td>{{ purchase.car.title }}</td>
+            <td>{{ purchase.purchased_date }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}
